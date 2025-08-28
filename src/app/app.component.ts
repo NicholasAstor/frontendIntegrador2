@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NotebookFormComponent } from './notebook/notebook-form/notebook-form.component';
 
 @Component({
   selector: 'app-root',
-  imports: [],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  standalone: true,
+  imports: [NotebookFormComponent],
+  template: `
+    <div class="container py-4">
+      <h3 class="mb-3">Notebooks</h3>
+      <app-notebook-form></app-notebook-form>
+    </div>
+  `
 })
+
 export class AppComponent {
   title = 'frontend';
-  
+
 }
