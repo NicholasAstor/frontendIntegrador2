@@ -1,0 +1,31 @@
+<div class="calendar-container">
+  <div class="calendar-header d-flex justify-content-between align-items-center">
+    <button class="btn btn-light" (click)="mesAnterior()">&lt;</button>
+    <h4>{{ dataAtual | date: 'MMMM yyyy' }}</h4>
+    <button class="btn btn-light" (click)="proximoMes()">&gt;</button>
+  </div>
+
+  <div class="calendar-grid">
+
+    <div class="day-name" *ngFor="let d of ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb']">
+      {{ d }}
+    </div>
+
+    <!-- dias do mês (agora filhos diretos da grid) -->
+    <ng-container *ngFor="let semana of semanas">
+      <button
+        type="button"
+        class="day-cell"
+        *ngFor="let day of semana"
+        [ngClass]="{
+          'outside': day.getMonth() !== dataAtual.getMonth(),
+          'selected': MesmoDia(inicioMes, day) || MesmoDia(finalMes, day),
+          'in-range': intervalo(day)
+        }"
+        (click)="selecionarData(day)"
+      >
+        {{ day.getDate() }}
+      </button>
+    </ng-container>
+  </div>
+</div>

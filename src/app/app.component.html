@@ -4,12 +4,9 @@
   <div class="barra-superior ms-6"></div>
 </header>
 
-
-
-
-<!-- Left side home -->
- <div class="right-side-home">
-
+<main>
+  <!-- Left side home -->
+<div class="left-side-home">
   <!-- CARD -->
   <h5 class="card-title"> Estatisticas </h5>
    <div class="d-flex justify-content-right">
@@ -23,7 +20,7 @@
    </div>
   
    <!-- Calendário --> 
-  <h5 class="card-title"> Reservas por dia </h5>
+
 
    <div class="d-flex justify-content-right calendario-exemplo">
        <div class="card border-light mb-3" style="max-width: 18rem;">
@@ -38,23 +35,26 @@
 
  <div class="action-button">
    <!-- Criação de notebook e reserva -->
-   <button class="btn btn-primary" type="submit"> Reservar </button>
-   <button class="btn btn-primary" type="submit"> Cadastrar Notebook </button>
+   <button class="button" type="submit"> Reservar </button>
+   <button class="button" type="submit"> Cadastrar Notebook </button>
  </div>
-  
-  
-  <!-- Left side home -->
-  <div class="left-side-home">  
+</div>
 
-    <!-- PESQUISAR E FILTROS -->
-    <div class="container ms-5">
-      <search> 
-        <i class="fa-solid fa-magnifying-glass" style="color: #007db8;"></i>
-      </search>
-    </div>
-
-    <!-- TABELA -->
-    <table class="table table-bordered table-striped text-center">
+ <!-- right side home -->
+ <div class="right-side-home">  
+   
+  <div class="search-booking">
+       <!-- Pesquisa e filtro -->
+   <div class="container mt-4">
+   <form class="d-flex" role="search">
+     <input type="search" placeholder="Pesquisar" aria-label="Search">
+     <button class="btn btn-outline-secondary" type="submit">
+       <i class="fa-solid fa-magnifying-glass" style="color: #007db8;"></i>
+     </button>
+   </form>
+  </div> 
+   <!-- TABELA -->
+   <table class="table table-bordered table-striped text-center">
       <tr>
         <th>Reservado</th>
         <th>Data</th>
@@ -82,7 +82,11 @@
       </tr>
     </tbody>
   </table>
+  </div>
 
 
 </div>
 
+</main>
+
+<app-calendario> </app-calendario>
