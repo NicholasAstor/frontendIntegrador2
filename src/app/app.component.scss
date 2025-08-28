@@ -539,3 +539,40 @@ a:hover {
         padding-bottom: 30px !important;
     }
 }
+
+.card-title {
+
+    margin-top: 50px;
+    font-size: 25px;
+    color: #007DB8;
+}
+.card {
+    background-color: #007DB8;
+    margin-top: 10px;
+    color: #fff;
+    box-shadow: 4px 6px 5px 1px rgba(86,74,74,0.19);
+    -webkit-box-shadow: 4px 6px 5px 1px rgba(86,74,74,0.19);
+    -moz-box-shadow: 4px 6px 5px 1px rgba(86,74,74,0.19);
+    padding: 20px;
+
+}
+
+p, span {
+    color: white;
+}
+
+.container {
+    margin: 200px;
+}
+
+.right-side-home {
+    margin-left: 50px;
+}
+
+span {
+    font-weight: bold;
+}
+
+.calendario-exemplo {
+    padding: 20px;
+}
