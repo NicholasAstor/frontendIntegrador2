@@ -7,17 +7,14 @@ import {CreateNotebookDto, NotebookDto} from '../models/notebook.model';
 
 @Injectable({ providedIn: 'root' })
 export class NotebookService {
-  // Controller usa [Route("[controller]")] => base = /Notebook
   private apiUrl = `${environment.apiUrl}/Notebook`;
 
   constructor(private http: HttpClient) {}
 
-  // POST /Notebook
   cadastrarNotebook(dto: CreateNotebookDto): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}`, dto);
   }
 
-  // (bonus runway) outras operações do teu controller:
   getAll(): Observable<NotebookDto[]> {
     return this.http.get<NotebookDto[]>(this.apiUrl);
   }
