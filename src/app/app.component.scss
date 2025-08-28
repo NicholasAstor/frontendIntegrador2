@@ -76,7 +76,7 @@ a:hover {
 }
 
 .site-navbar {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     z-index: 1999;
     position: relative;
     width: 100%;
@@ -544,10 +544,10 @@ a:hover {
 
     margin-top: 50px;
     font-size: 25px;
-    color: #007DB8;
+    color: #dcdfdf;
 }
 .card {
-    background-color: #007DB8;
+    background-color: #eeeeee;
     margin-top: 10px;
     color: #fff;
     box-shadow: 4px 6px 5px 1px rgba(86,74,74,0.19);
@@ -575,4 +575,94 @@ span {
 
 .calendario-exemplo {
     padding: 20px;
+}
+
+.modal-content {
+  width: 80%;
+}
+
+
+.btn-primary {
+  margin-right: 20px;
+}
+
+
+.titulo {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+.barra-superior {
+  height: 5px;
+  background: #3d6ba3;
+  margin-top: 5px;
+}
+
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.soft-card {
+  background-color: #ededed;
+  color: #202020;
+  border: 0;
+  border-radius: 12px;
+  box-shadow:  6px 6px 0.05cm rgba(0, 0, 0, .06);
+}
+
+.fw-bold {
+  font-weight: 800;
+  color: #121212;
+}
+
+.table {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(16,24,40,.06);
+}
+.table thead th { font-weight: 700; letter-spacing: .2px; }
+
+
+.stats-list li + li { margin-top: .5rem; }
+
+.calendar-placeholder {
+  width: 100%;
+  min-height: 260px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: #111827;
+  font-weight: 600;
+}
+
+
+.filter-bar {
+  flex: 1;
+  height: 30px;
+  background: #f8f8f8;
+  border-radius: 4px;
+  margin-right: .75rem;
+}
+.search-icon {
+  color: #007db8;
+}
+
+.btn-action {
+  background: #0a78a6;
+  margin: 10px;
+  border: none;
+  color: #fff;
+  padding: .65rem 1.25rem;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(10, 120, 166, .25);
+}
+.btn-action:hover { filter: brightness(.95); }
+
+
+@media (max-width: 991.98px) {
+  .blue-panel { height: 300px; }
 }
