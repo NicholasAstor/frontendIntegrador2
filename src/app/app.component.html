@@ -17,9 +17,18 @@
       <div class="stats-card mb-4">
         <div class="card-body">
           <ul class="list-unstyled mb-0 stats-list">
-            <li>💻 <span class="fw-bold">5</span> de <span class="fw-bold">10</span> computadores livres.</li>
-            <li>👾 <span class="fw-bold">5</span> de <span class="fw-bold">10</span> laboratórios livres.</li>
-            <li>🏫 <span class="fw-bold">5</span> de <span class="fw-bold">10</span> salas livres.</li>
+            <li>
+              💻 <span class="fw-bold">{{ getNumeroLivre('notebook') }}</span>
+              de <span class="fw-bold">{{ getNumerosRecurso('notebook') }}</span> computadores livres.
+            </li>
+            <li>
+              👾 <span class="fw-bold">{{ getNumeroLivre('laboratório') }}</span>
+              de <span class="fw-bold">{{ getNumerosRecurso('laboratório') }}</span> laboratórios livres.
+            </li>
+            <li>
+              🏫 <span class="fw-bold">{{ getNumeroLivre('sala') }}</span>
+              de <span class="fw-bold">{{ getNumerosRecurso('sala') }}</span> salas livres.
+            </li>
           </ul>
         </div>
       </div>
@@ -121,7 +130,7 @@
               <tr>
                 <th style="width: 80px;">ID</th>
                 <th style="width: 140px;">Tipo</th>
-                <th>Nome/Descrição</th>
+                <th>Nome</th>
                 <th style="width: 150px;">Disponível</th>
                 <th style="width: 190px;">Data da Reserva</th>
                 <th style="width: 160px;" class="text-end">Ações</th>

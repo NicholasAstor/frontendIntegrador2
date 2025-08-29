@@ -1,9 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { NotebookFormComponent } from './notebook/notebook-form/notebook-form.component';
-import { RecursoService } from './services/recurso-service';
-import { RecursoDto } from './models/recurso-model';
+import {Component, inject, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {NotebookFormComponent} from './notebook/notebook-form/notebook-form.component';
+import {RecursoService} from './services/recurso-service';
+import {RecursoDto} from './models/recurso-model';
 
 declare var bootstrap: any;
 
@@ -71,6 +71,18 @@ export class AppComponent implements OnInit {
     }
 
     return list;
+  }
+
+  getNumerosRecurso(tipo: string) {
+    let list = this.recursos.filter(r => r.tipo.toLowerCase() === tipo);
+    return list.length;
+  }
+
+  getNumeroLivre(tipo: string) {
+    let total = this.getNumerosRecurso(tipo);
+    let list = this.recursos.filter(r => r.tipo.toLowerCase() === tipo)
+      .filter(r => r.disponivel);
+    return list.length;
   }
 
 
