@@ -9,11 +9,12 @@
 <!-- MAIN -->
 <main class="container-xl my-4">
   <div class="row g-4">
-    <!-- COLUNA ESQUERDA -->
-    <div class="col-12 col-lg-5">
+    <!-- COLUNA ÚNICA -->
+    <div class="col-12">
+
       <!-- Estatísticas -->
       <h5 class="section-title">Estatísticas</h5>
-      <div class="card soft-card mb-4">
+      <div class="stats-card mb-4">
         <div class="card-body">
           <ul class="list-unstyled mb-0 stats-list">
             <li>💻 <span class="fw-bold">5</span> de <span class="fw-bold">10</span> computadores livres.</li>
@@ -23,29 +24,19 @@
         </div>
       </div>
 
-      <!-- Reservas por Data -->
-      <h5 class="section-title">Reservas por Data</h5>
-      <div class="card soft-card mb-4">
-        <div class="card-body">
-          <!-- Coloque aqui seu calendário real -->
-          <div class="calendar-placeholder">Agosto de 2025</div>
-        </div>
-      </div>
-
       <!-- Botões de ação -->
-      <div class="d-flex gap-3 flex-wrap">
+      <div class="d-flex gap-3 flex-wrap mb-4">
         <button class="btn btn-action" type="button">Reservar</button>
 
         <button class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#notebookModal">
           Cadastrar Notebook
         </button>
       </div>
-    </div>
 
-    <!-- COLUNA DIREITA -->
-    <div class="col-12 col-lg-7">
-      <div class="card soft-card h-100">
+      <!-- Conteúdo principal -->
+      <div class="card soft-card">
         <div class="card-body">
+
           <!-- Barra de busca / filtros -->
           <div class="d-flex align-items-center justify-content-between mb-3">
             <div class="filter-bar"></div>
@@ -92,10 +83,10 @@
           </div>
 
           <!-- Estados -->
-          <div *ngIf="loading" class="text-muted py-2">Carregando… ✨</div>
+          <div *ngIf="loading" class="text-muted py-2">Carregando…</div>
           <div *ngIf="error && !loading" class="alert alert-danger py-2">{{ error }}</div>
           <div *ngIf="!loading && !error && recursosFiltrados.length === 0" class="text-muted py-2">
-            Nada para exibir nesse filtro. Try another vibe.
+            Nada para exibir nesse filtro.
           </div>
 
           <!-- Tabela -->
@@ -108,17 +99,18 @@
                 <th>Nome/Descrição</th>
                 <th style="width: 150px;">Disponível</th>
                 <th style="width: 190px;">Data da Reserva</th>
+                <th style="width: 160px;" class="text-end">Ações</th>
               </tr>
               </thead>
               <tbody>
               <tr *ngFor="let r of recursosFiltrados">
-                <td class="fw-semibold">{{ r.id }}</td>
+                <td class="fw-light">{{ r.id }}</td>
                 <td><span class="badge text-bg-secondary">{{ r.tipo }}</span></td>
                 <td>{{ r.nomeOuDescricao }}</td>
                 <td>
-          <span class="badge" [ngClass]="r.disponivel ? 'text-bg-success' : 'text-bg-danger'">
-            {{ r.disponivel ? 'Disponível' : 'Indisponível' }}
-          </span>
+                    <span class="badge" [ngClass]="r.disponivel ? 'text-bg-success' : 'text-bg-danger'">
+                      {{ r.disponivel ? 'Disponível' : 'Indisponível' }}
+                    </span>
                 </td>
                 <td>
                   <ng-container *ngIf="r.dataReserva; else semData">
@@ -130,7 +122,8 @@
               </tbody>
             </table>
           </div>
-          </div>
+
+        </div>
       </div>
     </div>
   </div>

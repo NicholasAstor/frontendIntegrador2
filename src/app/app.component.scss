@@ -555,7 +555,13 @@ a:hover {
     -moz-box-shadow: 4px 6px 5px 1px rgba(86,74,74,0.19);
     padding: 20px;
 
+
 }
+
+.table-responsive {
+  margin-top: 40px;
+}
+
 
 p, span {
     color: white;
@@ -573,9 +579,6 @@ span {
     font-weight: bold;
 }
 
-.calendario-exemplo {
-    padding: 20px;
-}
 
 .modal-content {
   width: 80%;
@@ -604,7 +607,21 @@ span {
   letter-spacing: .2px;
 }
 
+
+.stats-card {
+  padding: 20px;
+  width: 30%;
+  background-color: #ededed;
+  color: #202020;
+  border: 0;
+  border-radius: 12px;
+  box-shadow:  6px 6px 0.05cm rgba(0, 0, 0, .06);
+}
+
+
 .soft-card {
+  margin-bottom: 40px;
+  width: 90%;
   background-color: #ededed;
   color: #202020;
   border: 0;

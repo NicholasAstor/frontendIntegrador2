@@ -15,19 +15,4 @@ export class NotebookService {
     return this.http.post<void>(`${this.apiUrl}`, dto);
   }
 
-  getAll(): Observable<NotebookDto[]> {
-    return this.http.get<NotebookDto[]>(this.apiUrl);
-  }
-
-  getById(id: number): Observable<NotebookDto> {
-    return this.http.get<NotebookDto>(`${this.apiUrl}/${id}`);
-  }
-
-  update(id: number, dto: CreateNotebookDto): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${id}`, dto);
-  }
-
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  }
 }

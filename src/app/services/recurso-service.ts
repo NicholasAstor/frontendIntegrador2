@@ -1,5 +1,5 @@
 // src/app/services/recurso.service.ts
-import { Injectable, inject } from '@angular/core';
+import {Injectable, inject, OnInit} from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RecursoDto } from '../models/recurso-model';
@@ -19,4 +19,6 @@ export class RecursoService {
       headers: { Accept: 'application/json' }
     });
   }
+
+
 }
