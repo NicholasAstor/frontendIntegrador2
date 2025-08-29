@@ -2,12 +2,19 @@
 <header class="py-3">
   <div class="container-xl">
     <div class="header-info">
-      <div class="titulo ms-lg-2">👋 Olá, Dell Technologies!</div>
+      <div class="titulo ms-lg-2">
+        👋 Olá, {{ selectedFuncionario?.nome || "Funcionário" }}!
+      </div>
       <div class="user-sec">
-        <select name="user" id="user">
+        <select
+          [(ngModel)]="selectedFuncionario"
+          class="form-select w-auto mt-2"
+          name="user"
+          id="user"
+        >
           <option
             *ngFor="let funcionario of funcionarios"
-            [value]="funcionario.nome"
+            [ngValue]="funcionario"
           >
             {{ funcionario.matricula }} - {{ funcionario.nome }}
           </option>
