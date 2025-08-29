@@ -11,15 +11,23 @@
   <div class="row g-4">
     <!-- COLUNA ÚNICA -->
     <div class="col-12">
-
       <!-- Estatísticas -->
       <h5 class="section-title">Estatísticas</h5>
       <div class="stats-card mb-4">
         <div class="card-body">
           <ul class="list-unstyled mb-0 stats-list">
-            <li>💻 <span class="fw-bold">5</span> de <span class="fw-bold">10</span> computadores livres.</li>
-            <li>👾 <span class="fw-bold">5</span> de <span class="fw-bold">10</span> laboratórios livres.</li>
-            <li>🏫 <span class="fw-bold">5</span> de <span class="fw-bold">10</span> salas livres.</li>
+            <li>
+              💻 <span class="fw-bold">5</span> de
+              <span class="fw-bold">10</span> computadores livres.
+            </li>
+            <li>
+              👾 <span class="fw-bold">5</span> de
+              <span class="fw-bold">10</span> laboratórios livres.
+            </li>
+            <li>
+              🏫 <span class="fw-bold">5</span> de
+              <span class="fw-bold">10</span> salas livres.
+            </li>
           </ul>
         </div>
       </div>
@@ -28,7 +36,12 @@
       <div class="d-flex gap-3 flex-wrap mb-4">
         <button class="btn btn-action" type="button">Reservar</button>
 
-        <button class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#notebookModal">
+        <button
+          class="btn btn-action"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#notebookModal"
+        >
           Cadastrar Notebook
         </button>
       </div>
@@ -37,7 +50,6 @@
       <!-- Conteúdo principal -->
       <div class="card soft-card">
         <div class="card-body">
-
           <!-- Barra de busca / filtros -->
           <div class="d-flex align-items-center justify-content-between mb-3">
             <div class="filter-bar"></div>
@@ -47,128 +59,173 @@
           <!-- Filtros (data + modo) -->
           <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
             <div class="d-flex align-items-center gap-2">
-              <label for="dataFiltro" class="form-label m-0">Data</label>
+              <label class="form-label m-0">Período</label>
               <input
-                id="dataFiltro"
                 type="date"
                 class="form-control"
-                style="width: 190px;"
-                [(ngModel)]="filtroData"
-                (change)="fetch()" />
+                style="width: 180px"
+                [(ngModel)]="filtroDataInicio"
+                (change)="fetch()"
+              />
+
+              <span class="range">até</span>
+
+              <input
+                type="date"
+                class="form-control"
+                style="width: 180px"
+                [(ngModel)]="filtroDataFim"
+                (change)="fetch()"
+              />
             </div>
 
-            <div class="btn-group" role="group" aria-label="Filtro de visualização">
-              <button type="button"
-                      class="btn btn-outline-secondary"
-                      [class.active]="viewMode==='todos'"
-                      (click)="viewMode='todos'">
+            <div
+              class="btn-group"
+              role="group"
+              aria-label="Filtro de visualização"
+            >
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [class.active]="viewMode === 'todos'"
+                (click)="viewMode = 'todos'"
+              >
                 Todos
               </button>
-              <button type="button"
-                      class="btn btn-outline-secondary"
-                      [class.active]="viewMode==='reservados'"
-                      (click)="viewMode='reservados'">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [class.active]="viewMode === 'reservados'"
+                (click)="viewMode = 'reservados'"
+              >
                 Reservados
               </button>
-              <button type="button"
-                      class="btn btn-outline-secondary"
-                      [class.active]="viewMode==='disponiveis'"
-                      (click)="viewMode='disponiveis'">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [class.active]="viewMode === 'disponiveis'"
+                (click)="viewMode = 'disponiveis'"
+              >
                 Disponíveis
               </button>
             </div>
 
             <div class="btn-group" role="group" aria-label="Escolher por tipo">
-              <button type="button"
-                      class="btn btn-outline-secondary"
-                      [class.active]="tipoFiltro==='todos'"
-                      (click)="tipoFiltro='todos'">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [class.active]="tipoFiltro === 'todos'"
+                (click)="tipoFiltro = 'todos'"
+              >
                 Todos
               </button>
-              <button type="button"
-                      class="btn btn-outline-secondary"
-                      [class.active]="tipoFiltro==='notebook'"
-                      (click)="tipoFiltro='notebook'">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [class.active]="tipoFiltro === 'notebook'"
+                (click)="tipoFiltro = 'notebook'"
+              >
                 Notebooks
               </button>
-              <button type="button"
-                      class="btn btn-outline-secondary"
-                      [class.active]="tipoFiltro==='sala'"
-                      (click)="tipoFiltro='sala'">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [class.active]="tipoFiltro === 'sala'"
+                (click)="tipoFiltro = 'sala'"
+              >
                 Salas
               </button>
-              <button type="button"
-                      class="btn btn-outline-secondary"
-                      [class.active]="tipoFiltro==='laboratório'"
-                      (click)="tipoFiltro='laboratório'">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [class.active]="tipoFiltro === 'laboratório'"
+                (click)="tipoFiltro = 'laboratório'"
+              >
                 Laboratórios
               </button>
             </div>
-
           </div>
 
           <!-- Estados -->
           <div *ngIf="loading" class="text-muted py-2">Carregando…</div>
-          <div *ngIf="error && !loading" class="alert alert-danger py-2">{{ error }}</div>
-          <div *ngIf="!loading && !error && recursosFiltrados.length === 0" class="text-muted py-2">
+          <div *ngIf="error && !loading" class="alert alert-danger py-2">
+            {{ error }}
+          </div>
+          <div
+            *ngIf="!loading && !error && recursosFiltrados.length === 0"
+            class="text-muted py-2"
+          >
             Nada para exibir nesse filtro.
           </div>
 
           <!-- Tabela -->
-          <div class="table-responsive" *ngIf="!loading && !error && recursosFiltrados.length">
+          <div
+            class="table-responsive"
+            *ngIf="!loading && !error && recursosFiltrados.length"
+          >
             <table class="table table-hover align-middle">
               <thead class="table-light">
-              <tr>
-                <th style="width: 80px;">ID</th>
-                <th style="width: 140px;">Tipo</th>
-                <th>Nome/Descrição</th>
-                <th style="width: 150px;">Disponível</th>
-                <th style="width: 190px;">Data da Reserva</th>
-                <th style="width: 160px;" class="text-end">Ações</th>
-              </tr>
+                <tr>
+                  <th style="width: 80px">ID</th>
+                  <th style="width: 140px">Tipo</th>
+                  <th>Nome/Descrição</th>
+                  <th style="width: 150px">Disponível</th>
+                  <th style="width: 190px">Data da Reserva</th>
+                  <th style="width: 160px" class="text-end">Ações</th>
+                </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let r of recursosFiltrados">
-                <td class="fw-light">{{ r.id }}</td>
-                <td><span class="badge text-bg-secondary">{{ r.tipo }}</span></td>
-                <td>{{ r.nomeOuDescricao }}</td>
-                <td>
-                    <span class="badge" [ngClass]="r.disponivel ? 'text-bg-success' : 'text-bg-danger'">
-                      {{ r.disponivel ? 'Disponível' : 'Indisponível' }}
+                <tr *ngFor="let r of recursosFiltrados">
+                  <td class="fw-light">{{ r.id }}</td>
+                  <td>
+                    <span class="badge text-bg-secondary">{{ r.tipo }}</span>
+                  </td>
+                  <td>{{ r.nomeOuDescricao }}</td>
+                  <td>
+                    <span
+                      class="badge"
+                      [ngClass]="
+                        r.disponivel ? 'text-bg-success' : 'text-bg-danger'
+                      "
+                    >
+                      {{ r.disponivel ? "Disponível" : "Indisponível" }}
                     </span>
-                </td>
-                <td>
-                  <ng-container *ngIf="r.dataReserva; else semData">
-                    {{ r.dataReserva | date:'dd/MM/yyyy' }}
-                  </ng-container>
-                  <ng-template #semData>—</ng-template>
-                </td>
-                <td class="text-end">
-                  <div class="table-buttons d-inline-flex align-items-center gap-3">
+                  </td>
+                  <td>
+                    <ng-container *ngIf="r.dataReserva; else semData">
+                      {{ r.dataReserva | date : "dd/MM/yyyy" }}
+                    </ng-container>
+                    <ng-template #semData>—</ng-template>
+                  </td>
+                  <td class="text-end">
+                    <div
+                      class="table-buttons d-inline-flex align-items-center gap-3"
+                    >
+                      <!-- EDITAR: sempre -->
+                      <i
+                        class="fas fa-edit"
+                        role="button"
+                        tabindex="0"
+                        title="Editar"
+                        (click)="onEdit(r)"
+                      ></i>
 
-                    <!-- EDITAR: sempre -->
-                    <i class="fas fa-edit"
-                       role="button"
-                       tabindex="0"
-                       title="Editar"
-                       (click)="onEdit(r)"></i>
-
-                    <!-- EXCLUIR: só notebooks -->
-                    <i *ngIf="r.tipo?.toLowerCase() === 'notebook'"
-                       class="fa-solid fa-trash"
-                       role="button"
-                       tabindex="0"
-                       title="Excluir"
-                       [class.disabled]="deletingId === r.id"
-                       (click)="onDelete(r)"></i>
-
-                  </div>
-                </td>
-              </tr>
+                      <!-- EXCLUIR: só notebooks -->
+                      <i
+                        *ngIf="r.tipo?.toLowerCase() === 'notebook'"
+                        class="fa-solid fa-trash"
+                        role="button"
+                        tabindex="0"
+                        title="Excluir"
+                        [class.disabled]="deletingId === r.id"
+                        (click)="onDelete(r)"
+                      ></i>
+                    </div>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
-
         </div>
       </div>
     </div>
@@ -181,13 +238,17 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Cadastrar Notebook</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Fechar"
+        ></button>
       </div>
 
       <div class="modal-body">
         <app-notebook-form (saved)="onSaved()"></app-notebook-form>
       </div>
-
     </div>
   </div>
 </div>

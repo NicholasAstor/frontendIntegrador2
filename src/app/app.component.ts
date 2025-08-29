@@ -23,9 +23,8 @@ export class AppComponent implements OnInit {
   loading = false;
   error: string | null = null;
 
-
-  filtroData: string | null = null;
-
+  filtroDataInicio: string | null = null;
+  filtroDataFim: string | null = null;
 
   viewMode: 'todos' | 'reservados' | 'disponiveis' = 'todos';
   tipoFiltro: 'todos' | 'notebook' | 'sala' | 'laboratório' = 'todos';
@@ -37,7 +36,8 @@ export class AppComponent implements OnInit {
   fetch() {
     this.loading = true;
     this.error = null;
-    this.recursoSrv.list(this.filtroData).subscribe({
+
+    this.recursoSrv.list(this.filtroDataInicio, this.filtroDataFim).subscribe({
       next: (res) => {
         this.recursos = res ?? [];
         this.loading = false;
@@ -49,23 +49,21 @@ export class AppComponent implements OnInit {
     });
   }
 
-
-
   get recursosFiltrados(): RecursoDto[] {
     let list = this.recursos;
 
-
-    if (this.viewMode === 'reservados')   list = list.filter(r => !r.disponivel);
-    if (this.viewMode === 'disponiveis')  list = list.filter(r =>  r.disponivel);
-
+    if (this.viewMode === 'reservados')
+      list = list.filter((r) => !r.disponivel);
+    if (this.viewMode === 'disponiveis')
+      list = list.filter((r) => r.disponivel);
 
     const tf = this.tipoFiltro;
     if (tf !== 'todos') {
-      list = list.filter(r => {
+      list = list.filter((r) => {
         const t = r.tipo.toLowerCase();
-        if (tf === 'notebook')   return t === 'notebook';
-        if (tf === 'sala')       return t === 'sala';
-        if (tf === 'laboratório')return t === 'laboratório';
+        if (tf === 'notebook') return t === 'notebook';
+        if (tf === 'sala') return t === 'sala';
+        if (tf === 'laboratório') return t === 'laboratório';
         return true;
       });
     }
@@ -73,10 +71,7 @@ export class AppComponent implements OnInit {
     return list;
   }
 
-
-
   onSaved() {
-
     const ok = confirm(`Deseja adicionar o notebook?`);
     if (!ok) return;
 
@@ -88,17 +83,14 @@ export class AppComponent implements OnInit {
     this.fetch();
   }
 
-
   deletingId: number | null = null;
 
   onEdit(r: RecursoDto) {
-
     console.log('Editar recurso', r);
     alert(`Editar ${r.tipo} #${r.id} — pendente.`);
   }
 
   onDelete(r: RecursoDto) {
-
     if ((r.tipo || '').toLowerCase() !== 'notebook') return;
 
     const ok = confirm(`Excluir Notebook "${r.nomeOuDescricao}" (ID ${r.id})?`);
@@ -113,8 +105,7 @@ export class AppComponent implements OnInit {
       error: (e) => {
         this.deletingId = null;
         alert('Erro ao excluir: ' + (e?.message ?? 'desconhecido'));
-      }
+      },
     });
   }
-
 }
