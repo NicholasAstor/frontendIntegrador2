@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NotebookFormComponent } from './notebook/notebook-form/notebook-form.component';
 import { RecursoService } from './services/recurso-service';
 import { RecursoDto } from './models/recurso-model';
+import { AlocacaoComponent } from './alocacao-component/alocacao-component.component';
 
 declare var bootstrap: any;
 
@@ -12,7 +13,12 @@ declare var bootstrap: any;
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [CommonModule, FormsModule, NotebookFormComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    NotebookFormComponent,
+    AlocacaoComponent,
+  ],
 })
 export class AppComponent implements OnInit {
   title = 'frontend';

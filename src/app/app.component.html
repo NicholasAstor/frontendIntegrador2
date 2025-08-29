@@ -34,7 +34,14 @@
 
       <!-- Botões de ação -->
       <div class="d-flex gap-3 flex-wrap mb-4">
-        <button class="btn btn-action" type="button">Reservar</button>
+        <button
+          class="btn btn-action"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#reservaModal"
+        >
+          Reservar
+        </button>
 
         <button
           class="btn btn-action"
@@ -250,5 +257,13 @@
         <app-notebook-form (saved)="onSaved()"></app-notebook-form>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- MODAL: Reserva de Ambiente -->
+<div class="modal fade" id="reservaModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <!-- NÃO usa .modal-content aqui -->
+    <app-formulario></app-formulario>
   </div>
 </div>
