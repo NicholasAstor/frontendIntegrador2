@@ -118,6 +118,27 @@
                   </ng-container>
                   <ng-template #semData>—</ng-template>
                 </td>
+                <td class="text-end">
+                  <div class="table-buttons d-inline-flex align-items-center gap-3">
+
+                    <!-- EDITAR: sempre -->
+                    <i class="fas fa-edit"
+                       role="button"
+                       tabindex="0"
+                       title="Editar"
+                       (click)="onEdit(r)"></i>
+
+                    <!-- EXCLUIR: só notebooks -->
+                    <i *ngIf="r.tipo?.toLowerCase() === 'notebook'"
+                       class="fa-solid fa-trash"
+                       role="button"
+                       tabindex="0"
+                       title="Excluir"
+                       [class.disabled]="deletingId === r.id"
+                       (click)="onDelete(r)"></i>
+
+                  </div>
+                </td>
               </tr>
               </tbody>
             </table>

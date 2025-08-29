@@ -65,5 +65,34 @@ export class AppComponent implements OnInit {
     this.fetch();
   }
 
+  // estado para bloquear o ícone durante exclusão
+  deletingId: number | null = null;
+
+  onEdit(r: RecursoDto) {
+
+    // Placeholder elegante por enquanto:
+    console.log('Editar recurso', r);
+    alert(`Editar ${r.tipo} #${r.id} — pendente.`);
+  }
+
+  onDelete(r: RecursoDto) {
+    // aparece só para Notebook pelo *ngIf*, mas ainda valido o tipo por segurança
+    if ((r.tipo || '').toLowerCase() !== 'notebook') return;
+
+    const ok = confirm(`Excluir Notebook "${r.nomeOuDescricao}" (ID ${r.id})?`);
+    if (!ok) return;
+
+    this.deletingId = r.id;
+    this.recursoSrv.deleteNotebook(r.id).subscribe({
+      next: () => {
+        this.deletingId = null;
+        this.fetch(); // recarrega a tabela
+      },
+      error: (e) => {
+        this.deletingId = null;
+        alert('Erro ao excluir: ' + (e?.message ?? 'desconhecido'));
+      }
+    });
+  }
 
 }

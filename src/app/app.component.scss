@@ -571,6 +571,14 @@ p, span {
     margin: 200px;
 }
 
+.table-buttons {
+  display: flex;
+  gap: 20px;
+  justify-items: flex-end;
+  justify-content: end;
+  margin-right: 10px;
+}
+
 .right-side-home {
     margin-left: 50px;
 }

@@ -20,5 +20,10 @@ export class RecursoService {
     });
   }
 
+  deleteNotebook(id: number): Observable<void> {
+    // ajusta se a rota do seu backend for diferente
+    return this.http.delete<void>(`${environment.apiUrl}/Notebook/${id}`);
+  }
+
 
 }
