@@ -51,6 +51,41 @@ h6,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+header .header-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+header .user-sec {
+  display: flex;
+  align-items: center;
+}
+
+header .user-sec select {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ccc; // leve borda cinza
+  background-color: #fff; // fundo branco
+  border-radius: 6px; // arredondamento sutil
+  font-weight: 500;
+  color: #333; // texto escuro
+  cursor: pointer;
+  transition: all 0.2s ease; // animação suave ao focar
+  font-size: 0.95rem;
+}
+
+header .user-sec select:focus {
+  border-color: #034e9f; // cor da borda ao focar
+  box-shadow: 0 0 5px rgba(3, 78, 159, 0.4);
+  outline: none; // remove contorno padrão
+}
+
 a {
   -webkit-transition: 0.3s all ease;
   -o-transition: 0.3s all ease;
@@ -358,7 +393,6 @@ a:hover {
   -ms-transform: translateX(0%);
   transform: translateX(0%);
 }
-
 .site-mobile-menu .site-mobile-menu-header {
   width: 100%;
   float: left;
