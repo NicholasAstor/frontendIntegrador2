@@ -23,11 +23,12 @@ export class AppComponent implements OnInit {
   loading = false;
   error: string | null = null;
 
-  // filtro por data (yyyy-MM-dd)
+
   filtroData: string | null = null;
 
-  // modo de visualização do front
+
   viewMode: 'todos' | 'reservados' | 'disponiveis' = 'todos';
+  tipoFiltro: 'todos' | 'notebook' | 'sala' | 'laboratório' = 'todos';
 
   ngOnInit() {
     this.fetch();
@@ -48,15 +49,37 @@ export class AppComponent implements OnInit {
     });
   }
 
-  // Getter que aplica o filtro no front
+
+
   get recursosFiltrados(): RecursoDto[] {
-    if (this.viewMode === 'reservados') return this.recursos.filter(r => !r.disponivel);
-    if (this.viewMode === 'disponiveis') return this.recursos.filter(r => r.disponivel);
-    return this.recursos;
+    let list = this.recursos;
+
+
+    if (this.viewMode === 'reservados')   list = list.filter(r => !r.disponivel);
+    if (this.viewMode === 'disponiveis')  list = list.filter(r =>  r.disponivel);
+
+
+    const tf = this.tipoFiltro;
+    if (tf !== 'todos') {
+      list = list.filter(r => {
+        const t = r.tipo.toLowerCase();
+        if (tf === 'notebook')   return t === 'notebook';
+        if (tf === 'sala')       return t === 'sala';
+        if (tf === 'laboratório')return t === 'laboratório';
+        return true;
+      });
+    }
+
+    return list;
   }
 
-  // Fecha modal e recarrega a tabela após salvar
+
+
   onSaved() {
+
+    const ok = confirm(`Deseja adicionar o notebook?`);
+    if (!ok) return;
+
     const el = document.getElementById('notebookModal');
     if (el) {
       const inst = bootstrap.Modal.getInstance(el) ?? new bootstrap.Modal(el);
@@ -65,18 +88,17 @@ export class AppComponent implements OnInit {
     this.fetch();
   }
 
-  // estado para bloquear o ícone durante exclusão
+
   deletingId: number | null = null;
 
   onEdit(r: RecursoDto) {
 
-    // Placeholder elegante por enquanto:
     console.log('Editar recurso', r);
     alert(`Editar ${r.tipo} #${r.id} — pendente.`);
   }
 
   onDelete(r: RecursoDto) {
-    // aparece só para Notebook pelo *ngIf*, mas ainda valido o tipo por segurança
+
     if ((r.tipo || '').toLowerCase() !== 'notebook') return;
 
     const ok = confirm(`Excluir Notebook "${r.nomeOuDescricao}" (ID ${r.id})?`);
@@ -86,7 +108,7 @@ export class AppComponent implements OnInit {
     this.recursoSrv.deleteNotebook(r.id).subscribe({
       next: () => {
         this.deletingId = null;
-        this.fetch(); // recarrega a tabela
+        this.fetch();
       },
       error: (e) => {
         this.deletingId = null;

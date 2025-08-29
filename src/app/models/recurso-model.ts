@@ -3,5 +3,5 @@ export interface RecursoDto {
   tipo: string;
   nomeOuDescricao: string;
   disponivel: boolean;
-  dataReserva?: string | null; // ISO string do backend
+  dataReserva?: string | null;
 }

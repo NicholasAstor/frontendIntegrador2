@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {CreateNotebookDto, NotebookDto} from '../models/notebook.model';
+import {CreateNotebookDto} from '../models/notebook.model';
 
 @Injectable({ providedIn: 'root' })
 export class NotebookService {

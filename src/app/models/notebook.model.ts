@@ -1,6 +1,6 @@
 export interface CreateNotebookDto {
   numeroPatrimonio: number;
-  dataAquisicao: string; // ISO date (yyyy-MM-dd)
+  dataAquisicao: string;
   descricao: string;
 }
 

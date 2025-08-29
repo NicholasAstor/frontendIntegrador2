@@ -77,6 +77,33 @@
               </button>
             </div>
 
+            <div class="btn-group" role="group" aria-label="Escolher por tipo">
+              <button type="button"
+                      class="btn btn-outline-secondary"
+                      [class.active]="tipoFiltro==='todos'"
+                      (click)="tipoFiltro='todos'">
+                Todos
+              </button>
+              <button type="button"
+                      class="btn btn-outline-secondary"
+                      [class.active]="tipoFiltro==='notebook'"
+                      (click)="tipoFiltro='notebook'">
+                Notebooks
+              </button>
+              <button type="button"
+                      class="btn btn-outline-secondary"
+                      [class.active]="tipoFiltro==='sala'"
+                      (click)="tipoFiltro='sala'">
+                Salas
+              </button>
+              <button type="button"
+                      class="btn btn-outline-secondary"
+                      [class.active]="tipoFiltro==='laboratório'"
+                      (click)="tipoFiltro='laboratório'">
+                Laboratórios
+              </button>
+            </div>
+
             <button class="btn btn-outline-secondary" type="button" (click)="fetch()">
               Atualizar
             </button>
@@ -163,9 +190,6 @@
         <app-notebook-form (saved)="onSaved()"></app-notebook-form>
       </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fechar</button>
-      </div>
     </div>
   </div>
 </div>
