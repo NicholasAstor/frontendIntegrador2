@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-1">
+  <div class="mb-3">
+    <label class="form-label">Número Patrimônio</label>
+    <input
+      type="number"
+      class="form-control"
+      [class.is-invalid]="form.get('numeroPatrimonio')?.touched && form.get('numeroPatrimonio')?.invalid"
+      formControlName="numeroPatrimonio" />
+    <div class="invalid-feedback">Informe um número válido.</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Data de Aquisição</label>
+    <input
+      type="date"
+      class="form-control"
+      [class.is-invalid]="form.get('dataAquisicao')?.touched && form.get('dataAquisicao')?.invalid"
+      formControlName="dataAquisicao" />
+    <div class="invalid-feedback">Data obrigatória.</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Descrição</label>
+    <input
+      type="text"
+      class="form-control"
+      [class.is-invalid]="form.get('descricao')?.touched && form.get('descricao')?.invalid"
+      formControlName="descricao" />
+    <div class="invalid-feedback">Descrição obrigatória (mín. 2 caracteres).</div>
+  </div>
+
+  <div class="d-flex justify-content-end gap-2">
+    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+    <button class="btn btn-dark" type="submit" [disabled]="form.invalid || loading">
+      {{ loading ? 'Salvando…' : 'Salvar' }}
+    </button>
+  </div>
+</form>
