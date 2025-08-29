@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
 
   recursos: RecursoDto[] = [];
   funcionarios: Funcionario[] = [];
+  selectedFuncionario: Funcionario | null = null;
   loading = false;
   error: string | null = null;
 
@@ -48,7 +49,12 @@ export class AppComponent implements OnInit {
 
   fetchFuncionarios() {
     this.funcionarioSrv.getFuncionarios().subscribe({
-      next: (res) => (this.funcionarios = res ?? []),
+      next: (res) => {
+        this.funcionarios = res ?? [];
+        if (this.funcionarios.length > 0) {
+          this.selectedFuncionario = this.funcionarios[0]; // seleciona o primeiro por padrão
+        }
+      },
       error: (e) => {
         console.error('Erro ao carregar funcionários', e);
         this.error = 'Erro ao carregar funcionários';
