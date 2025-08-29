@@ -5,6 +5,10 @@ import { NotebookFormComponent } from './notebook/notebook-form/notebook-form.co
 import { RecursoService } from './services/recurso-service';
 import { RecursoDto } from './models/recurso-model';
 import { AlocacaoComponent } from './alocacao-component/alocacao-component.component';
+import {
+  Funcionario,
+  FuncionarioService,
+} from './services/funcionario.service';
 
 declare var bootstrap: any;
 
@@ -24,8 +28,10 @@ export class AppComponent implements OnInit {
   title = 'frontend';
 
   private recursoSrv = inject(RecursoService);
+  private funcionarioSrv = inject(FuncionarioService);
 
   recursos: RecursoDto[] = [];
+  funcionarios: Funcionario[] = [];
   loading = false;
   error: string | null = null;
 
@@ -37,6 +43,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.fetch();
+    this.fetchFuncionarios();
+  }
+
+  fetchFuncionarios() {
+    this.funcionarioSrv.getFuncionarios().subscribe({
+      next: (res) => (this.funcionarios = res ?? []),
+      error: (e) => {
+        console.error('Erro ao carregar funcionários', e);
+        this.error = 'Erro ao carregar funcionários';
+      },
+    });
   }
 
   fetch() {
